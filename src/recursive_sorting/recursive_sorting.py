@@ -29,10 +29,29 @@ def merge(arrA, arrB):
 # TO-DO: implement the Merge Sort function below USING RECURSION
 
 
+list = [1, 4, 10, 6, 5, 3]
+
+
 def merge_sort(arr):
     # TO-DO
+    if len(arr) > 1:
+        center = round(len(arr)/2)
+        arrA = arr[0:center]
+        arrB = arr[center:]
+        if len(arrA) == 1 and len(arrB) == 1:
+            arr = merge(arrA, arrB)
+        elif len(arrA) > 1 and len(arrB) == 1:
+            arr = merge(merge_sort(arrA), arrB)
+        elif len(arrA) == 1 and len(arrB) > 1:
+            arr = merge(merge_sort(arrB), arrA)
+        elif len(arrA) > 1 and len(arrB) > 1:
+            arr = merge(merge_sort(arrA), merge_sort(arrB))
+        return arr
+    else:
+        return arr
 
-    return arr
+
+print(merge_sort(list))
 
 
 # STRETCH: implement an in-place merge sort algorithm
